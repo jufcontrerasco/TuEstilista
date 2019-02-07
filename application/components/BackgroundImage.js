@@ -8,7 +8,7 @@ export default class BackgroundImage extends Component{
         return (
             <ImageBackground
                 source = {source}
-                style={{flex: 1, width: null, height: null}}
+                style={{flex: 1, width: null, height: null, backgroundColor:"#fff"}}
             >
                 {children}
             </ImageBackground>

@@ -12,7 +12,7 @@ import Register from '../screens/Register';
 
 const styles = StyleSheet.create({
     logo: {
-        flex: 1,
+        flex: 3,
         justifyContent: 'center',
         alignItems: 'center',
     }
@@ -20,11 +20,6 @@ const styles = StyleSheet.create({
 
 
 export default class Start extends Component{
-
-    static navigationOptions ={
-        title: 'Tu Estilista',
-    };
-
 
     constructor(props) {
         super(props);
@@ -89,7 +84,7 @@ export default class Start extends Component{
 
 
                     <View style={styles.logo}>
-                        <Image source={require('../../assets/icon.png')}/>
+                        <Image style={{ width: 80, height: 80, marginTop: 40}} source={require('../../assets/icon.png')}/>
                     </View>
 
                     <View style={{flex: 6}}>

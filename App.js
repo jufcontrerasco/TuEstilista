@@ -3,6 +3,9 @@ import {Text} from 'react-native-elements';
 import PreLoader from "./application/components/PreLoader";
 import * as firebase from 'firebase';
 import GuestNavigation from './application/navigations/guest';
+import ReservaVacio from "./application/components/ReservaVacio";
+import Reservas from "./application/Reservas/Reservas";
+import LoggedNavigation from "./application/navigations/logged";
 
 
 
@@ -58,7 +61,7 @@ export default class App extends React.Component {
     }
     if(isLogged){
       return (
-          <GuestNavigation/>
+          <LoggedNavigation/>
       );
     } else{
       return (

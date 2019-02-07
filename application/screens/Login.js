@@ -22,12 +22,10 @@ export default class Login extends Component{
         this.options = {
             fields:{
                 email:{
-                    help: 'Introduce tu Email',
                     error: 'Email incorrecto',
                     autoCapitalize: 'none',
                 },
                 password:{
-                    help: 'Introduce tu contraseña',
                     error: 'Contraseña incorrecta',
                     password: true,
                     secureTextEntry: true,

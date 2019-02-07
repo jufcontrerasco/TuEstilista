@@ -22,6 +22,7 @@ export default StackNavigator(
             headerStyle: {
                 backgroundColor: '#f40431',
                 textAlign: 'center',
+                display: 'none',
             },
             headerTitleStyle:{
                 textAlign: 'center',
