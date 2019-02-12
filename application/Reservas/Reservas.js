@@ -1,11 +1,12 @@
 import React,{Component} from 'react';
 import PreLoader from "../components/PreLoader";
 import * as firebase from 'firebase';
-import {StyleSheet, FlatList , View} from 'react-native';
+import {StyleSheet, FlatList , View, ScrollView} from 'react-native';
 import {ListItem} from "react-native-elements";
 import {NavigationActions} from 'react-navigation';
 import ReservaButton from "../components/ReservaButton";
 import ReservaVacio from "../components/ReservaVacio";
+import Producto from "../components/Producto";
 
 
 export default class Reservas extends Component{
@@ -22,7 +23,7 @@ export default class Reservas extends Component{
 
     addReserva(){
         const navigateAction = NavigationActions.navigate({
-            routeName: 'addReserva'
+            routeName: 'AddReservas'
         });
         this.props.navigation.dispatch(navigateAction);
     }
@@ -54,13 +55,11 @@ export default class Reservas extends Component{
     renderReserva(reserva){
         return(
             <ListItem
-                containerStyle={styles.Item}
+                containerStyle={styles.item}
                 titleStyle={styles.title}
-                roundAvatar
-                title={reserva.name}
-                avatar={this.state.reserva_logo}
-                onPress={() => this.reservaDetail(reserva)}
-                rightIcon={{name: 'arrow-right', type:'font-awesome', style: styles.listIconStyle}}
+                title={`${reserva.name} (Capacidad: ${reserva.price})`}
+                leftAvatar={{ source: this.state.reserva_logo }}
+                rightIcon={{ name: 'arrow-right', type: 'font-awesome', style: styles.listIconStyle}}
             />
         )
     }
@@ -73,20 +72,27 @@ export default class Reservas extends Component{
 
         if(!reservas.length){
             return(
-                <View>
-                    <ReservaVacio text="No hay reservas disponibles"/>
+                <View style={{marginTop:50, flex: 1}}>
+                    <ReservaVacio text="No hay reservas disponibles" />
                     <ReservaButton addReserva={this.addReserva.bind(this)}/>
                 </View>
+
                 );
         }
         return(
-            <View>
-                <FlatList
-                    data={reservas}
-                    renderItem={(data) => this.renderReserva(data.item)}
-                />
+            <ScrollView>
+                <View>
+                <Producto combo={"Manicure Especial"} precio={"15000"} descripcion={"Gran promocion"}/>
+                <Producto combo={"Manicure Especial"} precio={"15000"} descripcion={"Gran promocion"}/>
+                <Producto combo={"Manicure Especial"} precio={"15000"} descripcion={"Gran promocion"}/>
+                <Producto combo={"Manicure Especial"} precio={"15000"} descripcion={"Gran promocion"}/>
+                <Producto combo={"Manicure Especial"} precio={"15000"} descripcion={"Gran promocion"}/>
+                <Producto combo={"Manicure Especial"} precio={"15000"} descripcion={"Gran promocion"}/>
+                <Producto combo={"Manicure Especial"} precio={"15000"} descripcion={"Gran promocion"}/>
                 <ReservaButton addReserva={this.addReserva.bind(this)}/>
-            </View>
+                </View>
+            </ScrollView>
+
         )
     }
 
@@ -101,8 +107,8 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color:'#0000'
     },
-    Item:{
+    item:{
         padding: 0,
-        backgroundColor: '#ff173c'
+        backgroundColor: '#f40431'
     }
 })

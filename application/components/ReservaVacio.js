@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     reservaEmptyView: {
         justifyContent: 'center',
         alignItems:'center',
-        flex: 1,
+        flex: 2,
         marginTop: 10,
         marginBottom: 10,
         marginLeft: 20,

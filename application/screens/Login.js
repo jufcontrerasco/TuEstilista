@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View,StyleSheet} from 'react-native';
 import BackgroundImage from "../components/BackgroundImage";
 import t from 'tcomb-form-native';
 import FormValidation from '../utils/validation';
 import {Card} from "react-native-elements";
+
+import {NavigationActions} from 'react-navigation';
 const Form = t.form.Form;
 import * as firebase from 'firebase';
 import Toast from 'react-native-simple-toast';
@@ -15,17 +17,17 @@ export default class Login extends Component{
         super();
 
         this.user = t.struct({
-            email: FormValidation.email,
-            password: FormValidation.password
+            correo: FormValidation.email,
+            contraseña: FormValidation.password
         });
 
         this.options = {
             fields:{
-                email:{
-                    error: 'Email incorrecto',
+                correo:{
+                    error: 'No existen coincidencias',
                     autoCapitalize: 'none',
                 },
-                password:{
+                contraseña:{
                     error: 'Contraseña incorrecta',
                     password: true,
                     secureTextEntry: true,
@@ -50,16 +52,17 @@ export default class Login extends Component{
                     }else{
                         Toast.showWithGravity(errorMessage, Toast.LONG, Toast.BOTTOM);
                     }
-
+a
                 });
         }
 
     }
 
+
     render(){
         return(
-                <View style={{display: this.props.dp}}>
-                    <Card wrapperStyle={{paddingLeft: 10}} title={"Iniciar sesión"}>
+                <View style={{display: this.props.dp, alignItems: 'center'}}>
+                    <View style={styles.inicio}>
                         <Form
                             ref="form"
                             type={this.user}
@@ -84,8 +87,15 @@ export default class Login extends Component{
                             color="#f40431"
                         />
                         <AppButtonFace/>
-                    </Card>
+                    </View>
                 </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    inicio:{
+        margin: 10,
+        width: 300,
+    }
+});

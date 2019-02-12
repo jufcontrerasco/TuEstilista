@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, ScrollView, Text,StyleSheet} from 'react-native';
+import {View, ScrollView, Text} from 'react-native';
 import BackgroundImage from "../components/BackgroundImage";
 import AppButon from "../components/AppButon";
 import {Card} from "react-native-elements";
@@ -13,7 +13,7 @@ const Form = t.form.Form;
 import * as firebase from 'firebase';
 
 
-export default class Register extends Component{
+export default class RegisterEst extends Component{
     constructor(){
         super();
 
@@ -30,30 +30,28 @@ export default class Register extends Component{
 
         this.user = t.struct({
             nombre: t.String,
-            apellido: t.maybe(t.String),
+            apellido: t.String,
             email: FormValidation.email,
             password: FormValidation.password,
-            password_confirmation: this.samePassword
+            password_confirmation: this.samePassword,
         });
 
         this.options = {
             fields:{
                 nombre:{
                     help: 'Introduce tu Nombre',
-                    error: 'Email incorrecto',
                 },
                 apellido:{
                     help: 'Introduce tu Apellido',
-                    error: 'Email incorrecto',
                 },
                 email:{
                     help: 'Introduce tu Email',
-                    error: 'Email incorrecto',
+                    error: 'Formato incorrecto',
                     autoCapitalize: 'none',
                 },
                 password:{
                     help: 'Introduce tu contraseña',
-                    error: 'Contraseña incorrecta',
+                    error: 'La contraseña debe tener mas de 6 carecteres',
                     password: true,
                     secureTextEntry: true,
                 },
@@ -91,8 +89,8 @@ export default class Register extends Component{
     render(){
         return(
 
-                <View style={{display: this.props.dp, alignItems: 'center'}}>
-                    <View style={styles.reg}>
+                <View style={{display: this.props.dp}}>
+                    <Card wrapperStyle={{paddingLeft: 10}} title={"Registrate"}>
                         <Form
                             ref="form"
                             type={this.user}
@@ -119,16 +117,8 @@ export default class Register extends Component{
                             color="#f40431"
                         />
                         <AppButtonFace/>
-                    </View>
+                    </Card>
                 </View>
         );
     }
 }
-
-
-const styles = StyleSheet.create({
-    reg:{
-        margin: 10,
-        width: 300,
-    }
-});

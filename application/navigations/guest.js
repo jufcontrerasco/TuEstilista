@@ -3,6 +3,8 @@ import {StackNavigator} from 'react-navigation';
 import StartScreen from '../screens/Start';
 import LoginScreen from '../screens/Login';
 import RegisterScreen from '../screens/Register';
+import RegisterEstScreen from '../screens/RegisterEst';
+
 
 export default StackNavigator(
     {
@@ -14,6 +16,9 @@ export default StackNavigator(
         },
         Register: {
             screen: RegisterScreen
+        },
+        Regestilista: {
+            screen: RegisterEstScreen
         }
     },
     {

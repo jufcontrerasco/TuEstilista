@@ -10,7 +10,7 @@ export default class ReservaButton extends Component{
             <View style={styles.buttonContainer}>
                 <AppButon
                     bgColor="#f40431"
-                    title="Reservar Servicio"
+                    title="  Reservar Servicio"
                     action={addReserva}
                     iconName="plus"
                     iconSize={30}
@@ -24,10 +24,14 @@ export default class ReservaButton extends Component{
 
 const styles = StyleSheet.create({
     buttonContainer:{
-        position: 'absolute',
-        alignSelf: 'flex-end',
-        justifyContent: 'center',
-        bottom: 0,
-        marginTop: 100,
+        marginTop: 20,
+        marginBottom: 20,
+        alignItems:"center",
+        justifyContent:"flex-end",
+
+    },
+    button:{
+      height: 45,
+      width: 150,
     }
 });

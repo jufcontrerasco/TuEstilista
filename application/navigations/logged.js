@@ -1,5 +1,7 @@
 import React from 'react';
 import ReservasScreen from "../Reservas/Reservas";
+import AddReservas from "../Reservas/addReserva";
+import LogoutScreen from "../screens/Logout";
 import {DrawerNavigator, StackNavigator} from "react-navigation";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -39,14 +41,40 @@ const rightIcon = (navigation, icon) => <Icon
 
 const  reservasScreenStack = StackNavigator(
     {
-        ListRestaurants:{
+        ListReservas:{
             screen: ReservasScreen,
             navigationOptions: ({navigation}) => ({
-                title: 'Reservas',
-                drawerIcon:  ({tintColor}) => (<Icon name="home" size={24} style={{color: tintColor}}/>),
+                title: 'Tu Estilista',
+                drawerIcon:  <Icon name="home" size={24} style={{color: "#fff"}}/>,
                 headerLeft: leftIcon(navigation, 'bars')
             })
 
+        },
+        AddReservas:{
+            screen: AddReservas,
+            navigationOptions: ({navigation}) => ({
+                title: 'Añadir Reserva',
+                headerRight: rightIcon(navigation, 'home'),
+                headerLeft: leftIcon(navigation, 'bars')
+            })
+
+        }
+
+    }
+);
+
+const logoutScreenStack = StackNavigator(
+    {
+    LogoutScreen: {
+        screen: LogoutScreen,
+        navigationOptions:({navigation}) => ({
+            title: 'Cerrar sesión',
+            drawerIcon: <Icon name="sign-out" size={24} style={{color: "#fff"}}/>,
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+        })
         }
     }
 );
@@ -55,14 +83,17 @@ export default DrawerNavigator(
     {
         ReservasScreen:{
             screen: reservasScreenStack
+        },
+        LogoutScreen:{
+            screen: logoutScreenStack
         }
     },
     {
-        drawerBackgroundColor : "blue",
+        drawerBackgroundColor : "#f40431",
         contentOptions:{
-            activateTintColor: "white",
+            activateTintColor: "#fff",
             activateBackgroundColor: 'transparent',
-            inactiveTintColor: "white",
+            inactiveTintColor: "#fff",
             itemsContainerStyle: {
                 marginVertical: 0,
             }
