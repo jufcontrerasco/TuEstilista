@@ -17,17 +17,17 @@ export default class Login extends Component{
         super();
 
         this.user = t.struct({
-            correo: FormValidation.email,
-            contraseña: FormValidation.password
+            email: FormValidation.email,
+            password: FormValidation.password
         });
 
         this.options = {
             fields:{
-                correo:{
+                email:{
                     error: 'No existen coincidencias',
                     autoCapitalize: 'none',
                 },
-                contraseña:{
+                password:{
                     error: 'Contraseña incorrecta',
                     password: true,
                     secureTextEntry: true,
@@ -52,7 +52,6 @@ export default class Login extends Component{
                     }else{
                         Toast.showWithGravity(errorMessage, Toast.LONG, Toast.BOTTOM);
                     }
-a
                 });
         }
 

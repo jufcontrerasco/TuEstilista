@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, ScrollView, Text,StyleSheet, Image} from 'react-native';
 import BackgroundImage from "./BackgroundImage";
 
+
 export default class Producto extends Component{
 
 

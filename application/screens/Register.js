@@ -19,8 +19,13 @@ export default class Register extends Component{
 
         this.state={
             user:{
+                name:'',
+                lastname:'',
+                gender: '',
+                birthDate: '',
+                cell: '',
                 email: '',
-                password: ''
+                password: '',
             }
         };
 
@@ -29,8 +34,11 @@ export default class Register extends Component{
         });
 
         this.user = t.struct({
-            nombre: t.String,
-            apellido: t.maybe(t.String),
+            name:t.String,
+            lastname:t.String,
+            gender: t.String,
+            birthDate: t.String,
+            cell: t.String,
             email: FormValidation.email,
             password: FormValidation.password,
             password_confirmation: this.samePassword
@@ -38,13 +46,20 @@ export default class Register extends Component{
 
         this.options = {
             fields:{
-                nombre:{
+                name:{
                     help: 'Introduce tu Nombre',
-                    error: 'Email incorrecto',
                 },
-                apellido:{
+                lastname:{
                     help: 'Introduce tu Apellido',
-                    error: 'Email incorrecto',
+                },
+                gender:{
+                    help: 'Introduce tu Genero',
+                },
+                birthDate:{
+                    help: 'Introduce tu Fecha de Nacimiento',
+                },
+                cell:{
+                    help: 'Introduce tu Celular',
                 },
                 email:{
                     help: 'Introduce tu Email',
@@ -72,15 +87,22 @@ export default class Register extends Component{
     register(){
         this.validate = this.refs.form.getValue();
         if(this.validate){
+            let data = {};
+            const key = firebase.database().ref().child('usuarios').push().key;
+            data[`usuarios/${key}`] = this.state.user;
+            firebase.database().ref().update(data);
+
             firebase.auth().createUserWithEmailAndPassword(
                 this.validate.email, this.validate.password
             )
                 .then(() =>{
-                    Toast.showWithGravity("Registro Exitoso, Bienvenido!", Toast.LONG, Toast.BOTTOM);
+                    Toast.showWithGravity("Registro Exitoso, Bienvenido", Toast.LONG, Toast.BOTTOM);
                 })
                 .catch(err =>{
                     Toast.showWithGravity(err.message, Toast.LONG, Toast.BOTTOM);
                 })
+
+
         }
     }
 
@@ -88,6 +110,7 @@ export default class Register extends Component{
         this.setState({user});
 
     }
+
     render(){
         return(
 
